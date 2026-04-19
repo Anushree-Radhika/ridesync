@@ -1,0 +1,424 @@
+/* ── Layout ── */
+.page {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.map {
+  width: 100%;
+  height: 420px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  z-index: 0;
+}
+
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-family: 'Rubix';
+  user-select: none;
+}
+
+.logo:hover {
+  color: #000;
+  font-weight: 700;
+  font-family: 'Rubix';
+  text-shadow: 0 0 12px #aae3ff;
+  user-select: none;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navLink {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.navLink:hover {
+  color: #000;
+  font-weight: 500;
+  text-shadow: 0 0 12px #eaf106;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navAction {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+
+.navAction:hover {
+  color: #000;
+}
+
+.loginBtn {
+  background: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.loginBtn:hover {
+  background: #222;
+}
+
+.loginBtn:active {
+  transform: scale(0.97);
+}
+
+/* ── Welcome Banner ── */
+.banner {
+  background: #000;
+  color: #fff;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 0.875rem;
+}
+
+.bannerName {
+  font-weight: 600;
+}
+
+.bannerTrips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa;
+}
+
+/* ── Main Grid ── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .navLinks {
+    display: none;
+  }
+}
+
+/* ── Request a Ride ── */
+.cityRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.changeCity {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+}
+
+.changeCity:hover {
+  color: #555;
+}
+
+.rideTitle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #000;
+  letter-spacing: -1px;
+  margin: 0 0 24px 0;
+}
+
+.pickupPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d4d4d4;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: fit-content;
+  transition: background 0.15s;
+}
+
+.pickupPill:hover {
+  background: #f5f5f5;
+}
+
+.inputCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ebebeb;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.inputRow:first-child {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dotCircle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  flex-shrink: 0;
+}
+
+.dotSquare {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.locationInput {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #222;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.locationInput::placeholder {
+  color: #aaa;
+}
+
+.seePricesBtn {
+  background: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.seePricesBtn:hover {
+  background: #222;
+}
+
+.seePricesBtn:active {
+  transform: scale(0.98);
+}
+
+/* ── Suggestions ── */
+.suggestionsTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 16px 0;
+}
+
+.suggestionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.suggestionCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  min-height: 100px;
+  border: 1px solid #ebebeb;
+  transition: box-shadow 0.2s;
+}
+
+.suggestionCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionLabel {
+  font-size: 0.75rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ── Account & Activity ── */
+.activitySection {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+
+.activityTitle {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #000;
+  letter-spacing: -0.5px;
+  margin: 0 0 24px 0;
+}
+
+.activityGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .activityGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.activityCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.activityCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.activityCardTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 4px 0;
+}
+
+.activityCardSub {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin: 0;
+}
+
+/* ── Login Prompt Card ── */
+.loginPromptCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.loginPromptText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 4px 0;
+}
+
+.loginPromptSub {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.requestride {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: "#000";
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
