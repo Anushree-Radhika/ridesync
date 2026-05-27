@@ -1,10 +1,11 @@
 # 🚗 RideSync
 
-> A production-ready ride-sharing & carpooling platform built for India.
+>Reimagining mobility through intelligent ride matching.
 
+>RideSync is a full-stack, cross-platform carpooling and ride-sharing solution tailored for high-density zones in India (like airports, railway stations, tech parks, and stadiums). While traditional ride-hailing platforms leave travelers fragmented, RideSync introduces an intelligent coordination layer that connects distinct passengers traveling along overlapping routes in real time. 
 ![License](https://img.shields.io/badge/license-ISC-blue)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![TypeScript](https://img.shields.io/badge/JavaScript-12.x-yellow)
 ![Prisma](https://img.shields.io/badge/Prisma-5.x-2D3748)
 ![Status](https://img.shields.io/badge/status-beta-orange)
 
