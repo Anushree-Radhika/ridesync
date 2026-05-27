@@ -13,7 +13,7 @@
 ![Status](https://img.shields.io/badge/status-beta-orange)
 
 ---
-Currently in **beta** — built for MVP and real-user testing.
+https://ridesync-q08v.onrender.com
 ---
 ## 📌 Table of Contents
 
