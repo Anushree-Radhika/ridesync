@@ -17,17 +17,17 @@ Currently in **beta** — built for MVP and real-user testing.
 ---
 ## 📌 Table of Contents
 
-[📸 Screenshots](https://github.com/Anushree-Radhika/ridesyn#-screenshots)
-[✨ Vision & The Problem](https://github.com/Anushree-Radhika/ridesync#-vision--the-problem)
-[🛠️ Core Features](https://github.com/Anushree-Radhika/ridesync#-core-features)
-[🚦 Getting Started](https://github.com/Anushree-Radhika/ridesyn#-getting-started)
-[🏗️ System Architecture](https://github.com/Anushree-Radhika/ridesync#-system-architecture)
-[📦 Technology Stack](https://github.com/Anushree-Radhika/ridesyn#-technology-stack)
-[📚 Codebase Guide](https://github.com/Anushree-Radhika/ridesync#-codebase-guide)
-[🗺️ Roadmap](https://github.com/Anushree-Radhika/ridesyn#-roadmap)
-[🌟 The Team](https://github.com/Anushree-Radhika/ridesyn#-the-team)
-[🤝 Contributing](https://github.com/Anushree-Radhika/ridesyn#-contributing)
-[📄 License](https://github.com/Anushree-Radhika/ridesyn#-license)
+>[📸 Screenshots](https://github.com/Anushree-Radhika/ridesyn#-screenshots)
+>[✨ Vision & The Problem](https://github.com/Anushree-Radhika/ridesync#-vision--the-problem)
+>[🛠️ Core Features](https://github.com/Anushree-Radhika/ridesync#-core-features)
+>[🚦 Getting Started](https://github.com/Anushree-Radhika/ridesyn#-getting-started)
+>[🏗️ System Architecture](https://github.com/Anushree-Radhika/ridesync#-system-architecture)
+>[📦 Technology Stack](https://github.com/Anushree-Radhika/ridesyn#-technology-stack)
+>[📚 Codebase Guide](https://github.com/Anushree-Radhika/ridesync#-codebase-guide)
+>[🗺️ Roadmap](https://github.com/Anushree-Radhika/ridesyn#-roadmap)
+>[🌟 The Team](https://github.com/Anushree-Radhika/ridesyn#-the-team)
+>[🤝 Contributing](https://github.com/Anushree-Radhika/ridesyn#-contributing)
+>[📄 License](https://github.com/Anushree-Radhika/ridesyn#-license)
 
 ---
 ## 📸 Screenshots
