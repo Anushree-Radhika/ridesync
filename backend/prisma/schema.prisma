@@ -1,0 +1,233 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  RIDER
+  DRIVER
+  ADMIN
+}
+
+enum RideStatus {
+  REQUESTED
+  ACCEPTED
+  PICKED_UP
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  WALLET
+  UPI
+  CARD
+}
+
+enum VehicleType {
+  BIKE
+  AUTO
+  CAR
+  SUV
+}
+
+model User {
+  id              String    @id @default(uuid())
+  name            String
+  email           String    @unique
+  phone           String    @unique
+  passwordHash    String
+  role            Role      @default(RIDER)
+  profilePic      String?
+  isVerified      Boolean   @default(false)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  riderProfile    RiderProfile?
+  driverProfile   DriverProfile?
+  ridesAsRider    Ride[]          @relation("RiderRides")
+  wallet          Wallet?
+  sentRatings     Rating[]        @relation("RatingGiver")
+  receivedRatings Rating[]        @relation("RatingReceiver")
+  notifications   Notification[]
+  otpCodes        OtpVerification[]
+  refreshTokens   RefreshToken[]
+}
+
+model RiderProfile {
+  id               String  @id @default(uuid())
+  userId           String  @unique
+  emergencyContact String?
+  totalRides       Int     @default(0)
+  user             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DriverProfile {
+  id            String    @id @default(uuid())
+  userId        String    @unique
+  licenseNumber String    @unique
+  licenseExpiry DateTime
+  isApproved    Boolean   @default(false)
+  isOnline      Boolean   @default(false)
+  currentLat    Float?
+  currentLng    Float?
+  totalRides    Int       @default(0)
+  averageRating Float     @default(0.0)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicle       Vehicle?
+  ridesAsDriver Ride[]    @relation("DriverRides")
+}
+
+model Vehicle {
+  id          String        @id @default(uuid())
+  driverId    String        @unique
+  type        VehicleType
+  brand       String
+  model       String
+  year        Int
+  plateNumber String        @unique
+  color       String
+  isActive    Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  driver      DriverProfile @relation(fields: [driverId], references: [id], onDelete: Cascade)
+}
+
+model Ride {
+  id                 String      @id @default(uuid())
+  riderId            String
+  driverId           String?
+  status             RideStatus  @default(REQUESTED)
+  pickupAddress      String
+  pickupLat          Float
+  pickupLng          Float
+  dropAddress        String
+  dropLat            Float
+  dropLng            Float
+  estimatedFare      Float
+  finalFare          Float?
+  distanceKm         Float?
+  durationMins       Int?
+  requestedAt        DateTime    @default(now())
+  acceptedAt         DateTime?
+  pickedUpAt         DateTime?
+  completedAt        DateTime?
+  cancelledAt        DateTime?
+  cancellationReason String?
+  rider              User             @relation("RiderRides", fields: [riderId], references: [id])
+  driver             DriverProfile?   @relation("DriverRides", fields: [driverId], references: [id])
+  payment            Payment?
+  rating             Rating?
+  statusHistory      RideStatusHistory[]
+
+  @@index([riderId])
+  @@index([driverId])
+  @@index([status])
+}
+
+model RideStatusHistory {
+  id        String     @id @default(uuid())
+  rideId    String
+  status    RideStatus
+  changedAt DateTime   @default(now())
+  note      String?
+  ride      Ride       @relation(fields: [rideId], references: [id], onDelete: Cascade)
+
+  @@index([rideId])
+}
+
+model Payment {
+  id              String        @id @default(uuid())
+  rideId          String        @unique
+  amount          Float
+  method          PaymentMethod
+  status          PaymentStatus @default(PENDING)
+  transactionId   String?       @unique
+  gatewayResponse Json?
+  paidAt          DateTime?
+  createdAt       DateTime      @default(now())
+  ride            Ride          @relation(fields: [rideId], references: [id])
+
+  @@index([status])
+}
+
+model Wallet {
+  id           String              @id @default(uuid())
+  userId       String              @unique
+  balance      Float               @default(0.0)
+  updatedAt    DateTime            @updatedAt
+  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions WalletTransaction[]
+}
+
+model WalletTransaction {
+  id          String   @id @default(uuid())
+  walletId    String
+  amount      Float
+  type        String
+  description String?
+  createdAt   DateTime @default(now())
+  wallet      Wallet   @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@index([walletId])
+}
+
+model Rating {
+  id         String   @id @default(uuid())
+  rideId     String   @unique
+  giverId    String
+  receiverId String
+  score      Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  ride       Ride     @relation(fields: [rideId], references: [id])
+  giver      User     @relation("RatingGiver", fields: [giverId], references: [id])
+  receiver   User     @relation("RatingReceiver", fields: [receiverId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  body      String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+}
+
+model OtpVerification {
+  id        String   @id @default(uuid())
+  userId    String
+  code      String
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
