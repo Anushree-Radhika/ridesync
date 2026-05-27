@@ -22,7 +22,7 @@ node_modules/
 *.exe
 # production
 /build
-
+.vscode
 # misc
 .DS_Store
 *.pem
