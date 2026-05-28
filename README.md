@@ -1,5 +1,3 @@
-<img width="1762" height="228" alt="image" src="https://github.com/user-attachments/assets/9a1a6daf-f879-4c26-93c8-da463f590889" /><img width="939" height="76" alt="image" src="https://github.com/user-attachments/assets/79edbd5f-b415-4975-b858-ced00fde24f7" /><div align="center">
-
 # 🚗 RideSync
 
 ### Share. Save .Safe.
