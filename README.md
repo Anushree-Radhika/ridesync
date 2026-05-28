@@ -1,12 +1,12 @@
-<div align="center">
+<img width="1762" height="228" alt="image" src="https://github.com/user-attachments/assets/9a1a6daf-f879-4c26-93c8-da463f590889" /><img width="939" height="76" alt="image" src="https://github.com/user-attachments/assets/79edbd5f-b415-4975-b858-ced00fde24f7" /><div align="center">
 
 # 🚗 RideSync
 
-### Share the road. Split the fare. Clear the air.
+### Share. Save .Safe.
 
-RideSync was built from a simple observation — cities are choking, rides are getting more expensive, and drivers are earning less per hour, all at the same time. Every person taking a separate cab to the same destination is not just wasteful. It is the default the entire industry is built around.
+“Reimagining mobility through intelligent ride matching.”
 
-RideSync is built around the opposite idea.
+For the budget-conscious, safety-first, planet-aware rider.
 
 [![Status](https://img.shields.io/badge/status-MVP%20in%20progress-orange)](https://github.com/Anushree-Radhika/ridesync)
 [![Stack](https://img.shields.io/badge/stack-100%25%20free%20%26%20open%20source-brightgreen)](https://github.com/Anushree-Radhika/ridesync)
@@ -17,41 +17,22 @@ RideSync is built around the opposite idea.
 
 ---
 
+
 ## 📖 Table of Contents
 
-- [Why RideSync Exists](#-why-ridesync-exists)
-- [How It Works](#-how-it-works)
-- [The Booking Flow](#-the-booking-flow)
-- [The ML Matching Engine](#-the-ml-matching-engine)
-- [Vehicle Capacity System](#-vehicle-capacity-system)
-- [Fare Split Logic](#-fare-split-logic)
-- [Safety by Design](#-safety-by-design)
-- [System Architecture](#-system-architecture)
-- [Tech Stack](#-tech-stack)
-- [MVP Scope](#-mvp-scope)
-- [Roadmap](#-roadmap)
-- [Codebase Bible](#-codebase-bible--for-team-members)
+- [How It Works](https://github.com/Anushree-Radhika/ridesync#-how-it-works)
+- [The Booking Flow](https://github.com/Anushree-Radhika/ridesync#-the-booking-flow)
+- [The ML Matching Engine](https://github.com/Anushree-Radhika/ridesync#-the-ml-matching-engine)
+- [Vehicle Capacity System](https://github.com/Anushree-Radhika/ridesync#-vehicle-capacity-system)
+- [Fare Split Logic](https://github.com/Anushree-Radhika/ridesync#-fare-split-logic)
+- [Safety by Design](https://github.com/Anushree-Radhika/ridesync#-safety-by-design)
+- [System Architecture](https://github.com/Anushree-Radhika/ridesync#-system-architecture)
+- [Tech Stack](https://github.com/Anushree-Radhika/ridesync#-tech-stack)
+- [MVP Scope](https://github.com/Anushree-Radhika/ridesync#-mvp-scope)
+- [Roadmap](https://github.com/Anushree-Radhika/ridesync#-roadmap)
+- [Codebase Bible](https://github.com/Anushree-Radhika/ridesync#-codebase-bible--for-team-members)
 
 ---
-
-## 🌍 Why RideSync Exists
-
-Three things are happening simultaneously on every street in every growing city in the world.
-
-**Pollution is rising.** Road transport is one of the largest contributors to urban air pollution. Every additional vehicle on the road — burning fuel to carry one person who could have shared with two others — makes it worse. Fewer cars carrying more people means less emissions. No platform is built to make that happen at scale.
-
-**Ride prices keep climbing.** Surge pricing, fuel costs, platform commissions — the rider absorbs all of it. A solo booking means one person carrying the full fare, every time.
-
-**Drivers are earning less per hour.** Between rides they reposition, wait, run empty. A driver completing one well-matched group trip across overlapping routes earns more per hour than three separate solo rides with dead time between them — because the dead time disappears.
-
-The driver gets paid more. The rider pays less per head. The car that was already going makes better use of the road it occupies.
-
-RideSync is the coordination layer that makes this possible. It uses machine learning to find people near you heading the same direction at the same time, checks that everyone fits comfortably in a single vehicle, and splits the fare based on exactly how much of the route each person actually uses.
-
-Same destination. Fraction of the cost. One car instead of three.
-
----
-
 ## 💡 How It Works
 
 A user lands on RideSync and enters four things:
@@ -490,9 +471,9 @@ Once a driver accepts, the map is live. The driver's pin moves in real time. Rid
 ## 🗺️ Roadmap
 
 ```
-✅ Phase 1    Infrastructure — PostgreSQL, Redis, Prisma, scaffold
-✅ Phase 2    Auth — OTP, JWT, refresh tokens, registration
-✅ Phase 3    Ride engine — solo request, match, track, complete
+⬜ Phase 1    Infrastructure — PostgreSQL, Redis, Prisma, scaffold
+⬜ Phase 2    Auth — OTP, JWT, refresh tokens, registration
+⬜ Phase 3    Ride engine — solo request, match, track, complete
 ⬜ Phase 4    Trip input — group size, gender, luggage capture + DB save
 ⬜ Phase 5    Vehicle system — capacity rules, boot space, RC KYC
 ⬜ Phase 6    ML matching engine — all 7 pipeline steps
@@ -585,7 +566,7 @@ ridesync/
 ### Data model
 
 ```
-User
+User(During booking a ride)
 ├── RiderProfile
 │   ├── group_size           ← entered at booking
 │   ├── group_gender         ← MALE_ONLY / FEMALE_ONLY / MIXED
@@ -610,7 +591,27 @@ User
 ├── OtpVerification
 └── RefreshToken
 ```
-
+```
+User(During booking a rid(default handle))
+├── RiderProfile
+│   ├── name           ← entered at booking
+│   ├── gender         ← MALE_ONLY / FEMALE_ONLY / MIXED
+│   └──age    ← count of large items
+│   ├── number of rides taken(their details)  ├── group_size
+│   │                                         ├── non_hand_luggage
+│   │                                         └── fare_share       ← proportional amount charged  
+│   ├── Payment history
+│   ├── Ratings
+|   |── Address 
+│   └── RideStatusHistory
+├── DriverProfile(EXtra same as rider profile)
+│   └── Vehicle
+│       ├── type             ← Bike/Toto/Hatchback/Sedan/SUV/Van
+│       ├── seat_capacity    ← from RC document
+│       └── boot_space       ← None/Minimal/Small/Medium/Large/XL
+├── Wallet
+│   └── WalletTransaction
+```
 ### Key engineering rules
 
 - The matching engine runs as a background job every 30 seconds via `matchingJob.ts`. It is not triggered per request.
